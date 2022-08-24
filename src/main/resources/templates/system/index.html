@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/common_include::common_css(~{::link})">
+    <link/>
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+
+        <div th:replace="common/menu :: menu"></div>
+        <div th:replace="common/top :: top"></div>
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <p>暂未实现</p>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                Gentelella - Bootstrap Admin Template by Colorlib. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+
+<div th:replace="common/common_include :: common_js(~{::script})">
+    <script th:src="@{/js/ptp/basic/project_manager.js}"></script>
+</div>
+</body>
+</html>

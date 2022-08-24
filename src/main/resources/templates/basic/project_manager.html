@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/common_include::common_css(~{::link})">
+  <link/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Gentelella Alela! | </title>
+
+    <!-- Bootstrap -->
+
+
+
+    <!-- Custom Theme Style -->
+
+
+<!--    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">-->
+<!--    &lt;!&ndash; Font Awesome &ndash;&gt;-->
+<!--    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">-->
+<!--    <link th:href="@{/css/nprogress.css}" rel="stylesheet">-->
+<!--    &lt;!&ndash; Animate.css &ndash;&gt;-->
+<!--    <link th:href="@{/css/animate.min.css}" rel="stylesheet">-->
+
+<!--    &lt;!&ndash; Custom Theme Style &ndash;&gt;-->
+<!--    <link th:href="@{/css/custom.min.css}" rel="stylesheet">-->
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+
+
+        <!-- top navigation -->
+
+        <!-- /top navigation -->
+        <div th:replace="common/menu :: menu"></div>
+        <div th:replace="common/top :: top"></div>
+        <!-- page content -->
+
+        <div class="right_col" role="main" style="min-height: 900px">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>工程管理</h3>
+              </div>
+
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div>
+                    <ol class="breadcrumb">
+                      <li><a href="#">当前位置</a></li>
+                      <li><a href="#">基础管理</a></li>
+                      <li class="active">工程管理</li>
+                    </ol>
+                  </div>
+
+
+                  <div class="col-md-6 text-left">
+                    <button type="button"  class="btn-success btn-round btn-sm" data-toggle="modal"
+                            data-target="#projectModal">新增工程
+                    </button>
+                  </div>
+                  <div class="col-md-6  form-group pull-right top_search">
+                    <div class="input-group">
+                      <input type="text" id="kw" class="form-control" placeholder="请输入创建人或工程名称搜索">
+                      <span class="input-group-btn">
+                      <button class="btn btn-success" type="button"><span style="color: white" onclick="project.module.getProjectData()">搜索</span></button>
+                    </span>
+                    </div>
+                  </div>
+
+                  <div class="x_content">
+                    <table class="table table-hover table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" id="tableShow" style="width: 100%;">
+                      <thead>
+                      <tr>
+                        <th>工程ID</th>
+                        <th>工程名称</th>
+                        <th>创建人</th>
+                        <!--                                        <th>接口数量</th>-->
+                        <th>操作</th>
+                      </tr>
+                      </thead>
+                      <tbody id="dataInfo">
+
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <footer>
+         <div th:replace="common/footer :: footer"></div>
+          </footer>
+        </div>
+
+
+
+
+        <!-- /page content -->
+        <!-- Modal -->
+        <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="modalTitle">新增工程</h4>
+              </div>
+              <div class="modal-body">
+                <form id="form" class="form-horizontal form-label-left">
+
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">工程名称<span
+                            class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="text" id="first-name" name="projectName"
+                             required="required" class="form-control col-md-7 col-xs-12">
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="accessLoadtestContent">压测环境访问地址<span
+                            class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="text" id="accessLoadtestContent" name="accessLoadtestAddr"
+                             class="form-control col-md-7 col-xs-12">
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                    <label for="accessOnlineContent" class="control-label col-md-3 col-sm-3 col-xs-12">生产环境访问地址</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input id="accessOnlineContent" class="form-control col-md-7 col-xs-12" required type="text"
+                             name="accessOnlineAddr">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="version" class="control-label col-md-3 col-sm-3 col-xs-12">版本号</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input id="version" class="form-control col-md-7 col-xs-12" type="text" name="version">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">备注<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                      <textarea class="form-control" rows="3" name="remark"></textarea>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" onclick="project.module.addOrUpdate()">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Gentelella - Bootstrap Admin Template by Colorlib. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+<!--    <script src="../vendors/jquery/dist/jquery.min.js"></script>-->
+<!--    &lt;!&ndash; Bootstrap &ndash;&gt;-->
+<!--    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>-->
+<!--    &lt;!&ndash; FastClick &ndash;&gt;-->
+<!--    <script src="../vendors/fastclick/lib/fastclick.js"></script>-->
+<!--    &lt;!&ndash; NProgress &ndash;&gt;-->
+<!--    <script src="../vendors/nprogress/nprogress.js"></script>-->
+<!--    &lt;!&ndash; iCheck &ndash;&gt;-->
+<!--    <script src="../vendors/iCheck/icheck.min.js"></script>-->
+
+<!--    &lt;!&ndash; Custom Theme Scripts &ndash;&gt;-->
+<!--    <script src="../build/js/custom.min.js"></script>-->
+
+<!--    <script th:src="@{/js/jquery.min.js}"></script>-->
+<!--    <script th:src="@{/js/bootstrap.min.js}"></script>-->
+<!--    <script th:src="@{/js/ptp/commonUtils.js}"></script>-->
+<!--    &lt;!&ndash; NPrth:ogress &ndash;&gt;-->
+<!--    &lt;!&ndash;    <script th:src="../vendors/nprogress/nprogress.js"></script>&ndash;&gt;-->
+<!--    &lt;!&ndash;    <script th:src="../vendors/iCheck/icheck.min.js"></script>&ndash;&gt;-->
+<!--    &lt;!&ndash; Custh:tom Theme Scripts &ndash;&gt;-->
+<!--    <script th:src="@{/js/custom.min.js}"></script>-->
+<!--    <script th:src="@{/js/ptp/system/menu.js}"></script>-->
+<!--    <script th:src="@{/js/ptp/basic/project_manager.js}"></script>-->
+
+    <div th:replace="common/common_include :: common_js(~{::script})">
+      <script th:src="@{/js/ptp/basic/project_manager.js}"></script>
+    </div>
+  </body>
+</html>

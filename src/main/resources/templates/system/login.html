@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Gentelella Alela! | </title>
+
+    <!-- Bootstrap -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+    <!-- NProgress -->
+    <link th:href="@{/css/nprogress.css}" rel="stylesheet">
+    <!-- Animate.css -->
+    <link th:href="@{/css/animate.min.css}" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link th:href="@{/css/custom.min.css}" rel="stylesheet">
+  </head>
+
+  <body class="login">
+    <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
+
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <form id="user_login">
+              <h1>用户登录</h1>
+              <div>
+                <input type="text" class="form-control" placeholder="用户名"  name="loginName" required="" />
+              </div>
+              <div>
+                <input type="password" class="form-control" placeholder="密码" name="passWord" required="" />
+              </div>
+              <div>
+                <button type="button" class="btn btn-success" onclick="login.module.userLogin()">登录</button>
+                <button type="reset" class="btn btn-primary">重置</button>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">新用户?
+                  <a href="#signup" class="to_register"> 注册用户</a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1><i class="fa fa-paw"></i>PTT压测平台</h1>
+                  <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <div id="register" class="animate form registration_form">
+          <section class="login_content">
+            <form id="user_register">
+              <h1>用户注册</h1>
+              <div>
+                <input type="text" class="form-control" placeholder="登录名" required="" name="loginName"/>
+              </div>
+              <div>
+                <input type="text" class="form-control" placeholder="姓名" required="" name="userName"/>
+              </div>
+              <div>
+                <input type="password" class="form-control" placeholder="密码" required="" name="password"/>
+              </div>
+              <div>
+                <input type="text" class="form-control" placeholder="手机号" required="" name="phone"/>
+              </div>
+              <div>
+                <input type="email" class="form-control" placeholder="邮箱" required="" name="email"/>
+              </div>
+              <div>
+                <button type="button" class="btn btn-success" onclick="login.module.userRegister()">提交</button>
+              </div>
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">已有用户?
+                  <a href="#signin" class="to_register"> 登陆 </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1><i class="fa fa-paw"></i> PTT压测平台</h1>
+                  <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/ptp/commonUtils.js}"></script>
+    <script th:src="@{/js/ptp/system/user_login.js}"></script>
+
+    <div th:replace="common/common_include :: common_js(~{::script})">
+      <script th:src="@{/js/ptp/system/user_login.js}"></script>
+    </div>
+  </body>
+</html>

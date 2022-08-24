@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/static/bootstrap.min.css}">
+</head>
+<body>
+<input type="button" value="调用get接口" onclick="doGet()">
+<input type="button" value="调用表单post接口" onclick="doPost()">
+<input type="button" value="调用json post接口" onclick="doJson()">
+<br/>
+<br/>
+<br/>
+<div class="container-fluid">
+
+    服务端响应：<p id="result"></p>
+</div>
+<h1>你好，Bootstrap</h1>
+
+<div class="row">
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+</div>
+<div class="row">
+    <div class="col-md-8">.col-md-8</div>
+    <div class="col-md-4">.col-md-4</div>
+</div>
+<div class="row">
+    <div class="col-md-4">.col-md-4</div>
+    <div class="col-md-4">.col-md-4</div>
+    <div class="col-md-4">.col-md-4</div>
+</div>
+<div class="row">
+    <div class="col-md-6">.col-md-6</div>
+    <div class="col-md-6">.col-md-6</div>
+</div>
+<script th:src="@{/static/jquery.min.js}"></script>
+<script th:src="@{/static/bootstrap.min.js}"></script>
+<script>
+    function doGet() {
+        $.ajax({
+            //请求地址
+            url: "/hello",
+            //请求方式
+            type: "get",
+            // 发送数据
+            data: "id=1",
+            // 同步还是异步（true：异步，false：同步）
+            async: false,
+            // 请求成功的处理逻辑
+            success: function (result) {
+                $("#result").text(result.msg);
+            },
+            // 请求失败的处理逻辑
+            error: function (e) {
+                alert(e);
+            }
+        });
+    }
+
+    function doPost() {
+        $.ajax({
+            //请求地址
+            url: "/demo/dlogin",
+            //请求方式
+            type: "post",
+            // 发送数据
+            data: "userName=admin&passWord=123456",
+            // 同步还是异步（true：异步，false：同步）
+            async: false,
+            // 请求成功的处理逻辑
+            success: function (result) {
+                $("#result").text(JSON.stringify(result));
+            },
+            // 请求失败的处理逻辑
+            error: function (e) {
+                alert(e);
+            }
+        });
+    }
+
+    function doJson() {
+        $.ajax({
+            //请求地址
+            url: "/demo/uadd",
+            //请求方式
+            type: "post",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            // 发送数据
+            data: '{"id":123, "userName":"admin", "password":"1234", "age": 18}',
+            // 同步还是异步（true：异步，false：同步）
+            async: false,
+            // 请求成功的处理逻辑
+            success: function (result) {
+                $("#result").text(JSON.stringify(result));
+            },
+            // 请求失败的处理逻辑
+            error: function (e) {
+                alert(e);
+            }
+        });
+    }
+</script>
+</body>
+</html>

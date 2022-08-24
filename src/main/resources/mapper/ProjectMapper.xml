@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ptp.dao.ProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.ptp.mode.Project" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="descn" property="descn" jdbcType="VARCHAR" />
+    <result column="access_params" property="accessParams" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="global_vars" property="globalVars" jdbcType="VARCHAR" />
+    <result column="used_flag" property="usedFlag" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_user_id" property="updateUserId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, project_name, descn, access_params, version, remark, global_vars, used_flag, 
+    create_time, create_user_id, update_time, update_user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from project
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="listAllByPage" resultMap="BaseResultMap" parameterType="com.ptp.util.PageUtils" >
+    select
+    p.id, p.project_name, p.descn, p.access_params,p.version, p.remark, p.global_vars, u.user_name as nowUserName, p.create_user_id
+    from project p left join user u on p.create_user_id = u.id
+    where p.used_flag = 1
+    <if test="keyword != null and keyword != ''" >
+      AND project_name LIKE #{keyword}
+    </if>
+    <if test="flag" >
+      limit #{currentPage},#{pageSize}
+    </if>
+  </select>
+
+  <select id="getCount" resultType="java.lang.Integer">
+    select count(1) from project where used_flag = 1
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from project
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ptp.mode.Project" >
+    insert into project (id, project_name, descn, 
+      access_params, version, remark, 
+      global_vars, used_flag, create_time, 
+      create_user_id, update_time, update_user_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{projectName,jdbcType=VARCHAR}, #{descn,jdbcType=VARCHAR}, 
+      #{accessParams,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{globalVars,jdbcType=VARCHAR}, #{usedFlag,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUserId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ptp.mode.Project" >
+    insert into project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="descn != null" >
+        descn,
+      </if>
+      <if test="accessParams != null" >
+        access_params,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="globalVars != null" >
+        global_vars,
+      </if>
+      <if test="usedFlag != null" >
+        used_flag,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="descn != null" >
+        #{descn,jdbcType=VARCHAR},
+      </if>
+      <if test="accessParams != null" >
+        #{accessParams,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="globalVars != null" >
+        #{globalVars,jdbcType=VARCHAR},
+      </if>
+      <if test="usedFlag != null" >
+        #{usedFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ptp.mode.Project" >
+    update project
+    <set >
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="descn != null" >
+        descn = #{descn,jdbcType=VARCHAR},
+      </if>
+      <if test="accessParams != null" >
+        access_params = #{accessParams,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="globalVars != null" >
+        global_vars = #{globalVars,jdbcType=VARCHAR},
+      </if>
+      <if test="usedFlag != null" >
+        used_flag = #{usedFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id = #{updateUserId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ptp.mode.Project" >
+    update project
+    set project_name = #{projectName,jdbcType=VARCHAR},
+      descn = #{descn,jdbcType=VARCHAR},
+      access_params = #{accessParams,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      global_vars = #{globalVars,jdbcType=VARCHAR},
+      used_flag = #{usedFlag,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

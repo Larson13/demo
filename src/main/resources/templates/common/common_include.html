@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="common_css(link)">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/css/nprogress.css}" rel="stylesheet">
+    <link th:href="@{/css/iCheck/flat/green.css}" rel="stylesheet">
+    <link th:href="@{/js/datatables/jquery.dataTables.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/js/datatables/buttons.bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/js/datatables/fixedHeader.bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/js/datatables/responsive.bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/js/datatables/scroller.bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/custom.css}" rel="stylesheet">
+    <link th:href="@{/css/custom.min.css}" rel="stylesheet">-
+
+    <!--    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">-->
+    <!--    &lt;!&ndash; Font Awesome &ndash;&gt;-->
+    <!--    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">-->
+    <!--    <link th:href="@{/css/nprogress.css}" rel="stylesheet">-->
+    <!--    &lt;!&ndash; Animate.css &ndash;&gt;-->
+    <!--    <link th:href="@{/css/animate.min.css}" rel="stylesheet">-->
+
+    <!--    &lt;!&ndash; Custom Theme Style &ndash;&gt;-->
+    <!--    <link th:href="@{/css/custom.min.css}" rel="stylesheet">-->
+    <th:block th:replace="${link}"/>
+</div>
+
+<div th:fragment="common_js(script)">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/nicescroll/jquery.nicescroll.min.js}"></script>
+    <script th:src="@{/js/iCheck/icheck.min.js}"></script>
+    <script th:src="@{/js/validator/validator.js}"></script>
+    <script th:src="@{/js/custom.js}"></script>
+    <script th:src="@{/js/datatables/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/js/datatables/dataTables.bootstrap.js}"></script>
+    <script th:src="@{/js/datatables/dataTables.buttons.min.js}"></script>
+    <script th:src="@{/js/datatables/buttons.bootstrap.min.js}"></script>
+    <script th:src="@{/js/datatables/jszip.min.js}"></script>
+    <script th:src="@{/js/datatables/pdfmake.min.js}"></script>
+    <script th:src="@{/js/datatables/vfs_fonts.js}"></script>
+    <script th:src="@{/js/datatables/buttons.html5.min.js}"></script>
+    <script th:src="@{/js/datatables/buttons.print.min.js}"></script>
+    <script th:src="@{/js/datatables/dataTables.fixedHeader.min.js}"></script>
+    <script th:src="@{/js/datatables/dataTables.keyTable.min.js}"></script>
+    <script th:src="@{/js/datatables/dataTables.responsive.min.js}"></script>
+    <script th:src="@{/js/datatables/responsive.bootstrap.min.js}"></script>
+    <script th:src="@{/js/datatables/dataTables.scroller.min.js}"></script>
+    <script th:src="@{/js/ptp/commonUtils.js}"></script>
+    <script th:src="@{/js/ptp/system/menu.js}"></script>
+    <script th:src="@{/js/ptp/loadTestCommon.js}"></script>
+    <script th:src="@{/js/ptp/system/top.js}"></script>
+    <th:block th:replace="${script}"/>
+</div>
+</html>

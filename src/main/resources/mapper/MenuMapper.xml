@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ptp.dao.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.ptp.mode.Menu" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="alias_name" property="aliasName" jdbcType="VARCHAR" />
+    <result column="LEVEL" property="level" jdbcType="TINYINT" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="SERIAL" property="serial" jdbcType="SMALLINT" />
+    <result column="location_url" property="locationUrl" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="TINYINT" />
+    <result column="used_flag" property="usedFlag" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, menu_name, alias_name, LEVEL, parent_id, SERIAL, location_url, STATUS, used_flag, 
+    create_time, create_user_id
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from menu
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from menu
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ptp.mode.Menu" >
+    insert into menu (id, menu_name, alias_name, 
+      LEVEL, parent_id, SERIAL, 
+      location_url, STATUS, used_flag, 
+      create_time, create_user_id)
+    values (#{id,jdbcType=BIGINT}, #{menuName,jdbcType=VARCHAR}, #{aliasName,jdbcType=VARCHAR}, 
+      #{level,jdbcType=TINYINT}, #{parentId,jdbcType=BIGINT}, #{serial,jdbcType=SMALLINT}, 
+      #{locationUrl,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{usedFlag,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ptp.mode.Menu" >
+    insert into menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="menuName != null" >
+        menu_name,
+      </if>
+      <if test="aliasName != null" >
+        alias_name,
+      </if>
+      <if test="level != null" >
+        LEVEL,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="serial != null" >
+        SERIAL,
+      </if>
+      <if test="locationUrl != null" >
+        location_url,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="usedFlag != null" >
+        used_flag,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="menuName != null" >
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="aliasName != null" >
+        #{aliasName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=TINYINT},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="serial != null" >
+        #{serial,jdbcType=SMALLINT},
+      </if>
+      <if test="locationUrl != null" >
+        #{locationUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="usedFlag != null" >
+        #{usedFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ptp.mode.Menu" >
+    update menu
+    <set >
+      <if test="menuName != null" >
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="aliasName != null" >
+        alias_name = #{aliasName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        LEVEL = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="serial != null" >
+        SERIAL = #{serial,jdbcType=SMALLINT},
+      </if>
+      <if test="locationUrl != null" >
+        location_url = #{locationUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="usedFlag != null" >
+        used_flag = #{usedFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ptp.mode.Menu" >
+    update menu
+    set menu_name = #{menuName,jdbcType=VARCHAR},
+      alias_name = #{aliasName,jdbcType=VARCHAR},
+      LEVEL = #{level,jdbcType=TINYINT},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      SERIAL = #{serial,jdbcType=SMALLINT},
+      location_url = #{locationUrl,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=TINYINT},
+      used_flag = #{usedFlag,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="listAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from menu
+    where used_flag = 1 and STATUS = 1
+  </select>
+</mapper>
