@@ -24,7 +24,6 @@ public class Ddmode {
     private  Double age;
     @Size(min=2, message="msg不能小于2")
     @Size (max=5, message="msg不能大于8")
-    @
     private String  msg;
 
 }
