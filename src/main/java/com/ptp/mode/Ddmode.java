@@ -23,7 +23,7 @@ public class Ddmode {
     @Digits(integer =5,fraction=5,message = "value小于1")
     private  Double age;
     @Size(min=2, message="msg不能小于2")
-    @Size (max=5, message="msg不能大于8")
+    @Size (max=5, message="msg不能大于99")
     private String  msg;
 
 }
